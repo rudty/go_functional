@@ -12,3 +12,25 @@ func TestTimeTick(t *testing.T) {
 		// fmt.Println(a)
 	}
 }
+
+type myError struct {
+}
+
+func (myError) Error() string {
+	return ""
+}
+
+func zeroNil() (int, error) {
+	var a *myError = nil
+	return 0, a
+}
+
+func zeroNilWrapper() (int, error) {
+	v, err := zeroNil()
+	return v, err
+}
+
+func TestZeroNil(t *testing.T) {
+	v, err := zeroNilWrapper()
+	fmt.Println(v, err == nil) // false
+}
