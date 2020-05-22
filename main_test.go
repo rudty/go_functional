@@ -34,3 +34,13 @@ func TestZeroNil(t *testing.T) {
 	v, err := zeroNilWrapper()
 	fmt.Println(v, err == nil) // false
 }
+
+func TestPanic(t *testing.T) {
+	defer func() {
+		r := recover()
+		if r != nil {
+			fmt.Println(r)
+		}
+	}()
+	panic(nil)
+}
