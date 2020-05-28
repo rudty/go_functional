@@ -59,3 +59,31 @@ func myCurryAdd3(a ...int) (int, interface{}) {
 		return myCurryAdd3(a[0], a[1], b[0])
 	}
 }
+
+func TestMapStringInt(t *testing.T) {
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+	}
+
+	for k, v := range m {
+		fmt.Println(k, v)
+	}
+
+	a := [5]int{1, 2, 3, 4, 5}
+	b := a[:2]
+	b[0] = 2
+	fmt.Println(a[:])
+}
+
+type M struct {
+	exists bool
+	value  interface{}
+}
+
+func (m *M) get() interface{} {
+	if m.value != nil {
+		return m.value
+	}
+	panic("value is nil")
+}
